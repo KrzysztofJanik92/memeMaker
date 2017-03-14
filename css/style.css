@@ -1,0 +1,31 @@
+body {
+   font-family: "Helvetica", sans-serif;
+   background: #eee;
+}
+
+h1{
+   text-align: center;
+   font-family: "Rubik Mono One", sans-serif;
+}
+
+#image-container {
+   display: flex;
+   width: 960px;
+   margin-top: 40px;
+   margin: 25px auto;
+   background: Rgba(0, 0, 0, 0.1);
+}
+
+#input-container {
+   padding-left: 50px;
+   float: right;
+   font-family: "Rubik Mono One", sans-serif;
+}
+
+
+
+.input {
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+
