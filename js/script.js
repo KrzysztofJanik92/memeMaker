@@ -1,6 +1,7 @@
-var getCanvas = document.querySelector('canvas');
+var getCanvas = document.getElementById('canv1');
 var canvas = getCanvas;
 var ctx = canvas.getContext('2d');
+
 
 function redrawMemeText(line, width, height) {
     ctx.fillText(line, width, height);
@@ -41,27 +42,41 @@ function textChangeListener(event) {
 }
 
 function saveFile() {
-    window.open(getCanvas.toDataURL());
+	
+		window.open(getCanvas.toDataURL('image/jpeg', 1.0));
+		
 }
 
 function handleFileSelect(event) {
-    var file = event.target.files[0]; 
-    var reader = new FileReader();
-    
-    reader.onload = function(fileObject) {
-        var data = fileObject.target.result;
+	if(window.FileReader){
+		var file = event.target.files[0]; 
+		var reader = new FileReader();
+			if(file){
+				if(file.type.match('image.*')){
+				reader.onload = function(fileObject) {
+					var data = fileObject.target.result;
         
-        var image = new Image();
-        image.onload = function() {
-            window.imageSrc = this;
-            redrawMeme(window.imageSrc, null, null);
-        }
+					var image = new Image();
+					image.onload = function() {
+						window.imageSrc = this;
+						redrawMeme(window.imageSrc, null, null);
+				}
         
-        image.src = data;
-        console.log('fileObject.target.result');
+					image.src = data;
+					console.log('fileObject.target.result');
         
-    } 
-    reader.readAsDataURL(file);
+				} 
+				document.getElementById('saveBtn').disabled = false;
+				document.getElementById('topLineText').disabled = false;
+				document.getElementById('bottomLineText').disabled = false;
+				reader.readAsDataURL(file);
+				
+			}
+		else{
+			window.alert("To nie grafika!!!!");
+		}
+		}
+	}
 }
 
 function main() {
@@ -72,7 +87,7 @@ function main() {
     input1.oninput = textChangeListener;
     input2.oninput = textChangeListener;
     document.getElementById('file').addEventListener('change', handleFileSelect, false);
-    document.querySelector('button').addEventListener('click', saveFile, false);
+    document.getElementById('saveBtn').addEventListener('click', saveFile, false);
 }
 
 main();
