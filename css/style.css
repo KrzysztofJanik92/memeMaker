@@ -1,6 +1,7 @@
 body {
    font-family: "Helvetica", sans-serif;
    background: #eee;
+   border:100px;
 }
 
 h1{
@@ -18,11 +19,8 @@ h1{
 
 #input-container {
    padding-left: 50px;
-   float: right;
    font-family: "Rubik Mono One", sans-serif;
 }
-
-
 
 .input {
    margin-top: 10px;
